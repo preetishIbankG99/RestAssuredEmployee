@@ -1,0 +1,17 @@
+{
+	"info": {
+		"_postman_id": "eb306342-6c71-4d53-8414-2bcf24558aa1",
+		"name": "Authorization",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "BasicAuthentication",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

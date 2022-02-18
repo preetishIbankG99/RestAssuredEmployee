@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "cc740a42-dfda-4925-aab5-8dcd31995c6b",
+		"name": "VariableSetUpPreRequest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pre-req-ScriptsEx",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"userid\",2);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//multiple assertion\r",
+							"pm.test(\"Validate multiple fields in response\", function () {\r",
+							"   responseJson=pm.response.json();\r",
+							"   pm.expect(responseJson.data.id).to.eql(2);\r",
+							"   pm.expect(responseJson.data.email).to.eql(\"janet.weaver@reqres.in\");\r",
+							"   pm.expect(responseJson.data.first_name).to.eql(\"Janet\");\r",
+							"   pm.expect(responseJson.data.last_name).to.eql(\"Weaver\");\r",
+							"});\r",
+							"//handling response that don't parse\r",
+							"pm.test(\"Body Contains String\", function () {\r",
+							"pm.expect(pm.response.text()).to.include(\"Weaver\")\r",
+							"\r",
+							"});\r",
+							"//status code being one of set\r",
+							"pm.test(\"Successful status code\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201])\r",
+							"});\r",
+							"//testing header\r",
+							"pm.test(\"Content-Type Header present\", function () {\r",
+							"    pm.response.to.have.header(\"content-type\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type value matched\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"content-type\")).to.eql(\"application/json; charset=utf-8\")\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/{{userid}}",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{userid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "userid",
+			"value": "6",
+			"type": "string"
+		}
+	]
+}

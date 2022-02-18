@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "ea6faa41-0364-4b62-84f6-e43fb44c1176",
+		"name": "DataDrivenTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "EmpDATADRIVEN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"check status code\"]=responseCode.code==200;\r",
+							"tests[\"check status in the response\"]=responseBody.has(\"success\");\r",
+							"var response=JSON.parse(responseBody)\r",
+							"tests[\"check status in the exact position\"]=response.status==\"success\"\r",
+							"pm.test(\"Check Content-Type header\",function()\r",
+							"{\r",
+							"//pm.response.to.be.header(\"Content-Type\",\"text/html; charset=UTF-8\");\r",
+							"pm.response.to.be.header(\"Content-Type\",\"application/json\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\"name\":\"{{name}}\",\r\n\"salary\":\"{{salary}}\",\r\n\"age\":\"{{age}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://dummy.restapiexample.com/api/v1/create",
+					"protocol": "http",
+					"host": [
+						"dummy",
+						"restapiexample",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
